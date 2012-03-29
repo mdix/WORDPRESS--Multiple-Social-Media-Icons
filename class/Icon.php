@@ -1,7 +1,9 @@
 <?php
-/*
+/**
  * Representation of a single social media icon, like a twitter or facebook button. Used
  * to build IconSets.
+ *
+ * @author marc
  */
 class Icon {
     private $name;

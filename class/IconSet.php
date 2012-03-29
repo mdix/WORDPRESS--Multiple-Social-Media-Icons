@@ -1,12 +1,7 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of IconSet
+ * Representation of a set of social media icons. Can either be build by giving an id 
+ * or created from scratch by passing an array with icon names.
  *
  * @author marc
  */

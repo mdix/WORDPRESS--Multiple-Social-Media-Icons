@@ -46,8 +46,6 @@ class IconSetTest extends PHPUnit_Framework_TestCase {
         $this->assertStringNotMatchesFormat('%Astumbleupon%A', $iconSet->getMarkup());
         $this->assertStringNotMatchesFormat('%Axing%A', $iconSet->getMarkup());
     }
-    
-    
 
 }
 
