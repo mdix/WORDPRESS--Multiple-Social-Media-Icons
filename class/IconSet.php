@@ -11,9 +11,9 @@
  * @author marc
  */
 class IconSet {
-    private $iconsSprite;
+    private $linkToSprite;
     
-    public function __construct() {
+    public function __construct($iconNames, $id = null) {
         
     }
     

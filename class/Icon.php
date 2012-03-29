@@ -4,7 +4,6 @@
  * to build IconSets.
  */
 class Icon {
-    private $id;
     private $name;
     private $iconSize;
     private $iconTitle;
@@ -34,7 +33,7 @@ class Icon {
      * multiplied with the position of the icon (from the left), starting with 0, negated!
      * @return int Left offset (in px) or -1 if not found
      */
-    public function getLeftOffset() {
+    public function getNegatedLeftOffset() {
         if (in_array($this->name, $this->availableIcons)) {
             $itemsArrayKey = array_search($this->name, $this->availableIcons);
             return -bcmul($this->iconSize, $itemsArrayKey);
@@ -72,8 +71,9 @@ class Icon {
      * @return String Buttons html markup
      */
     public function getMarkup() {
-        $markup = '<div style="width:%1$spx;height:%1$spx;background-image:###SPRITE###;background-position:%4$spx 0;"><a style="display:block;width:%1$spx;height:%1$spx;" href="%2$s" title="%3$s" target="_blank"></a></div>';
-        return sprintf($markup, $this->iconSize, $this->iconLink, $this->iconTitle, $this->getLeftOffset());
+        $template = '<div style="width:%1$spx;height:%1$spx;background-image:###SPRITE###;background-position:%4$spx 0;">'.
+                    '<a style="display:block;width:%1$spx;height:%1$spx;" href="%2$s" title="%3$s" target="_blank"></a></div>';
+        return sprintf($template, $this->iconSize, $this->iconLink, $this->iconTitle, $this->getNegatedLeftOffset());
     }
     
 }

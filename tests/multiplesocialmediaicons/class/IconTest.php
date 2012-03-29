@@ -37,31 +37,32 @@ class IconTest extends PHPUnit_Framework_TestCase {
         
         foreach ($iconNames as $key => $iconName) {
             $icon = new Icon($iconName, $iconSize);
-            $this->assertEquals(-bcmul($iconSize, $key), $icon->getLeftOffset(), 'Failed at icon ' . $key . ' (' . $iconName . ')');
+            $this->assertEquals(-bcmul($iconSize, $key), $icon->getNegatedLeftOffset(), 'Failed at icon ' . $key . ' (' . $iconName . ')');
         }
     }
     
     public function testFalseIconNameReturnsMinusOne() {
         $icon = new Icon('falseName', 32);
-        $this->assertEquals(-1, $icon->getLeftOffset());
+        $this->assertEquals(-1, $icon->getNegatedLeftOffset());
     }
     
     public function testGetMarkup() {
         $iconSize = 32;
-        
         $icon = new Icon('twitter', $iconSize);
-        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getLeftOffset().'px 0;"><a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="#" title="Follow me on twitter" target="_blank"></a></div>', $icon->getMarkup());
+        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
+                            '<a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="#" title="Follow me on twitter" target="_blank"></a></div>', $icon->getMarkup());
     }
     
     public function testGetMarkupWithCustomValues() {
-        $iconSize = 32;
+        $iconSize = 64;
         $customLink = 'http://www.dixpix.de';
         $customTitle = 'This is my custom title';
         
         $icon = new Icon('stumbleupon', $iconSize);
         $icon->setCustomIconLink($customLink);
         $icon->setCustomIconTitle($customTitle);
-        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getLeftOffset().'px 0;"><a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="'.$customLink.'" title="'.$customTitle.'" target="_blank"></a></div>', $icon->getMarkup());
+        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
+                            '<a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="'.$customLink.'" title="'.$customTitle.'" target="_blank"></a></div>', $icon->getMarkup());
     }
 }
 
