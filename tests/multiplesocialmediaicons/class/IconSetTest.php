@@ -41,6 +41,12 @@ class IconSetTest extends PHPUnit_Framework_TestCase {
         $this->assertStringMatchesFormat('%Areddit%A', $iconSet->getMarkup());
     }
     
+    public function testGetMarkupDoesNotReturnNotRequestedIcons() {
+        $iconSet = new IconSet(array('digg', 'linkedin', 'twitter'));
+        $this->assertStringNotMatchesFormat('%Astumbleupon%A', $iconSet->getMarkup());
+        $this->assertStringNotMatchesFormat('%Axing%A', $iconSet->getMarkup());
+    }
+    
     
 
 }
