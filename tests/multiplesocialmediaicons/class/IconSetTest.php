@@ -23,10 +23,17 @@ class IconSetTest extends PHPUnit_Framework_TestCase {
         
     }
     
-    public function testGetDefaultMarkupForThreeIcons() {
-        $iconSet = new IconSet($iconNames, $id);
-        
+    public function testInstantiatingWithEitherArrayOrId() {
+        $this->assertInternalType('object', new IconSet(array('test', 'test2', 'test3')));
+        $this->assertInternalType('object', new IconSet(3));
     }
+    
+    public function testInvalidArgumentExceptionWhenStringPassed() {
+        $this->setExpectedException('InvalidArgumentException');
+        $iconSet = new IconSet('invalid');
+    }
+    
+    
 
 }
 

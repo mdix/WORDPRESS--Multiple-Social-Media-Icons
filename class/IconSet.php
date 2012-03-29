@@ -13,11 +13,15 @@
 class IconSet {
     private $linkToSprite;
     
-    public function __construct($iconNames, $id = null) {
-        
+    public function __construct($param) {
+        if (is_int($param)) {
+            //$id = $param;
+        } elseif (is_array($param)) {
+            //$itemsToBuild = $param;
+        } else {
+            Throw new InvalidArgumentException('Either a id or a array with strings has to be given!');
+        }
     }
-    
-    
 }
 
 ?>
