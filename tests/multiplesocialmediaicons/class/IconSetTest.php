@@ -24,13 +24,21 @@ class IconSetTest extends PHPUnit_Framework_TestCase {
     }
     
     public function testInstantiatingWithEitherArrayOrId() {
-        $this->assertInternalType('object', new IconSet(array('test', 'test2', 'test3')));
-        $this->assertInternalType('object', new IconSet(3));
+        $this->assertInternalType('object', new IconSet(array('test', 'test2', 'test3')), 32);
+        $this->assertInternalType('object', new IconSet(3), 32);
     }
     
     public function testInvalidArgumentExceptionWhenStringPassed() {
         $this->setExpectedException('InvalidArgumentException');
-        $iconSet = new IconSet('invalid');
+        $iconSet = new IconSet('invalid', 32);
+    }
+    
+    public function testGetMarkupReturnsAllRequestedIcons() {
+        $iconSet = new IconSet(array('twitter', 'facebook', 'playstation', 'reddit'));
+        $this->assertStringMatchesFormat('%Atwitter%A', $iconSet->getMarkup());
+        $this->assertStringMatchesFormat('%Afacebook%A', $iconSet->getMarkup());
+        $this->assertStringMatchesFormat('%Aplaystation%A', $iconSet->getMarkup());
+        $this->assertStringMatchesFormat('%Areddit%A', $iconSet->getMarkup());
     }
     
     
