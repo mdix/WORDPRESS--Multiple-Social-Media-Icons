@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Mockpress/mockpress.php';
 require_once dirname(__FILE__) . '/../../../class/MultipleSocialMediaIcons.php';
 
 /**
@@ -18,6 +18,9 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
+        global $wpdb;
+        unset($wpdb); // unsetting $wpdb ensures that your tests always create new mock objects for their use
+        _reset_wp();
         $this->object = new MultipleSocialMediaIcons;
     }
 
