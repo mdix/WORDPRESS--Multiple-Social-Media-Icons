@@ -16,8 +16,7 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
     protected function setUp() {
         global $table_prefix;
         $this->prefix = $table_prefix;
-        $this->tableNames = array('iconset' => $this->prefix . 'msmi_iconset', 
-                                  'icon'    => $this->prefix . 'msmi_icon');
+        $this->tableNames = array('iconset' => $this->prefix . 'msmi_iconset');
         
         // has to be global because wordpress calls a static function and utilizes $wpdb
         $GLOBALS['wpdb']         = new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
@@ -32,46 +31,21 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         global $wpdb;
         
         $wpdb->query(sprintf('DROP TABLE IF EXISTS `%s`', $this->tableNames['iconset']));
-        $wpdb->query(sprintf('DROP TABLE IF EXISTS `%s`', $this->tableNames['icon']));
     }
     
     /**
      * We wan't to make sure that, when the plugin is activated in the wordpress backend
-     * and thus static install() is called, the tables for our plugin are created.
+     * and thus static install() is called, the table for our plugin is created.
      * @covers MultipleSocialMediaIcons::install_db()
      */
     public function testInstallDb() {
         global $wpdb;
-        // check for the tables, they shouldn't exist
+        // check for the table, it shouldn't exist
         $this->assertEquals(0, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])));
-        $this->assertEquals(0, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['icon'])));
-        // create tables via install which calls install_db()
+        // create table via install which calls install_db()
         MultipleSocialMediaIcons::install_db();
-        // check for the tables, they should exist
+        // check for the table, it should exist
         $this->assertEquals(1, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])));
-        $this->assertEquals(1, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['icon'])));
-    }
-    
-    public function testPopulateIconTable() {
-        global $wpdb;
-        $availableIcons = Icon::$AVAILABLE_ICONS;
-        
-        /*
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * WRITE TESTS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         */
-        
-        // check that $this->tableNames['icon'] is empty
-        
-        MultipleSocialMediaIcons::populateIconTable();
-        
-        // check that $this->tableNames['icon'] has count($availableIcons) data sets
-        
     }
 
     /**
@@ -171,6 +145,17 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
         );
+    }
+    
+    public function testGetAllPossibleIconsReturnsAllPossibleIcons() {
+        $availableIcons = Icon::$AVAILABLE_ICONS;
+        
+        $allPossibleIcons = $this->msmi->getAllPossibleIcons();
+        
+        foreach ($availableIcons as $key => $iconName) {
+            
+        }
+        
     }
 
 }

@@ -45,7 +45,6 @@ class MultipleSocialMediaIcons {
          */
         
         MultipleSocialMediaIcons::install_db();
-        MultipleSocialMediaIcons::populateIconTable();
 
         // Perform your activation tasks in here.
     }
@@ -89,7 +88,7 @@ class MultipleSocialMediaIcons {
         // plugin is installed on a new system and $upgrade[ ] is used for upgrading.
 
         // Define tables
-        $tables = array($table_prefix . 'msmi_iconset', $table_prefix . 'msmi_icon');
+        $tables = array($table_prefix . 'msmi_iconset');
         $structure = array(
 
             // Definition for prefix.'msmi_iconset'
@@ -99,14 +98,7 @@ class MultipleSocialMediaIcons {
             `field3` varchar(255) default NULL,
             `field4` tinyint(3) unsigned NOT NULL default '0',
             `field5` timestamp NOT NULL default CURRENT_TIMESTAMP,
-            PRIMARY KEY  (`id`) )",
-
-            // Definition for prefix.'msmi_icon'
-            "(`id` int(11) unsigned NOT NULL auto_increment,
-            `field1` varchar(255) NOT NULL,
-            `field2` varchar(255) NOT NULL,
-            `field3` varchar(255) NOT NULL,
-            PRIMARY KEY(`id`) )"
+            PRIMARY KEY  (`id`) )"
         );
 
         // Routines for upgrading, the structure is
@@ -151,14 +143,6 @@ class MultipleSocialMediaIcons {
         } else {
             update_option('myplugin-db-version', $db_version);
         }
-    }
-    
-    static function populateIconTable() {
-        global $wpdb;
-        global $table_prefix;
-        
-        $availableIcons = Icon::$AVAILABLE_ICONS;
-
     }
 
     /**
@@ -298,6 +282,10 @@ class MultipleSocialMediaIcons {
         ));
     }
 
+    function getAllPossibleIcons() {
+        
+    }
+    
     /**
      * Adds a new menu with the name "My Admin Menu" and let's anyone that
      * can publish posts be able to use it.
