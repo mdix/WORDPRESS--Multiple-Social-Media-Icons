@@ -25,15 +25,7 @@ class IconTest extends PHPUnit_Framework_TestCase {
     public function testPositionOffsetIsCorrectlySetPerImage() {
         $iconSize = 32;
         
-        $iconNames = array('youtube', 'wordpress', 'vimeo', 'twitter', 'twitpic', 
-            'stumbleupon', 'spotify', 'rss', 'playstation', 'lastfm', 'flickr', 
-            'facebook', 'digg', 'delicious', 'tumblr', 'piano', 'linkedin', 'myspace', 
-            'socialvibe', 'technorati', 'deviantart', 'blogger', 'behance', 'livejournal', 
-            'megavideo', 'reddit', 'designfloat', 'audioboo', 'ember', 'skype', 
-            'friendfeed', 'hyves', 'yahoo', 'bebo', 'typepad', 'xing', 'grooveshark', 
-            'creativecommons', 'steam', 'dailybooth', 'lockerz', 'google', 'email', 
-            'wakoopa', 'soundcloud', 'playfire', 'gowalla', 'forrst', 'dribbble', 
-            'dopplr', 'buzz');
+        $iconNames = Icon::$AVAILABLE_ICONS;
         
         foreach ($iconNames as $key => $iconName) {
             $icon = new Icon($iconName, $iconSize);

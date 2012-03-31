@@ -10,11 +10,10 @@ class Icon {
     private $iconSize;
     private $iconTitle;
     private $iconLink;
-    
     /**
      * All available Icons, sorted like they appear on the sprite from left to right
      */
-    private $availableIcons = array('youtube', 'wordpress', 'vimeo', 'twitter', 'twitpic', 
+    public static $AVAILABLE_ICONS = array('youtube', 'wordpress', 'vimeo', 'twitter', 'twitpic', 
             'stumbleupon', 'spotify', 'rss', 'playstation', 'lastfm', 'flickr', 
             'facebook', 'digg', 'delicious', 'tumblr', 'piano', 'linkedin', 'myspace', 
             'socialvibe', 'technorati', 'deviantart', 'blogger', 'behance', 'livejournal', 
@@ -25,8 +24,9 @@ class Icon {
             'dopplr', 'buzz');
     
     public function __construct($name, $iconSize) {
-        $this->name     = $name;
-        $this->iconSize = $iconSize;
+        $this->availableIcons = Icon::$AVAILABLE_ICONS;
+        $this->name           = $name;
+        $this->iconSize       = $iconSize;
         $this->setDefaultValues();
     }
     

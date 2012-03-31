@@ -1,4 +1,6 @@
 <?php
+require_once 'Icon.php';
+require_once 'IconSet.php';
 /**
  * This is where you add comments for your plugin class
  * @author Your Name <your@name.tld>
@@ -23,7 +25,7 @@ class MultipleSocialMediaIcons {
      */
     function __construct() {
         // Uncomment any of these calls to add the functionality that you need.
-
+        
         //add_action('init', array($this, 'init_custom_post_types'), 20);
         //add_action('init', array($this, 'init_localization'), 20);
         //add_action('init', array($this, 'init_scripts'), 20);
@@ -42,7 +44,8 @@ class MultipleSocialMediaIcons {
          * Uncomment this if you need database tables.
          */
         
-        //MultipleSocialMediaIcons::install_db();
+        MultipleSocialMediaIcons::install_db();
+        MultipleSocialMediaIcons::populateIconTable();
 
         // Perform your activation tasks in here.
     }
@@ -53,7 +56,7 @@ class MultipleSocialMediaIcons {
      */
     static function install_db() {
         global $wpdb;
-
+        global $table_prefix;
         /**
          * This value represent the current version of the layout of the database tables. This value
          * needs to be increased every time you change something in your database layout.
@@ -86,10 +89,10 @@ class MultipleSocialMediaIcons {
         // plugin is installed on a new system and $upgrade[ ] is used for upgrading.
 
         // Define tables
-        $tables = array('table1', 'table2');
+        $tables = array($table_prefix . 'msmi_iconset', $table_prefix . 'msmi_icon');
         $structure = array(
 
-            // Definition for 'table1'
+            // Definition for prefix.'msmi_iconset'
             "(`id` int(11) unsigned NOT NULL auto_increment,
             `field1` varchar(255) NOT NULL,
             `field2` varchar(255) NOT NULL,
@@ -98,7 +101,7 @@ class MultipleSocialMediaIcons {
             `field5` timestamp NOT NULL default CURRENT_TIMESTAMP,
             PRIMARY KEY  (`id`) )",
 
-            // Definition for 'table2'
+            // Definition for prefix.'msmi_icon'
             "(`id` int(11) unsigned NOT NULL auto_increment,
             `field1` varchar(255) NOT NULL,
             `field2` varchar(255) NOT NULL,
@@ -148,6 +151,14 @@ class MultipleSocialMediaIcons {
         } else {
             update_option('myplugin-db-version', $db_version);
         }
+    }
+    
+    static function populateIconTable() {
+        global $wpdb;
+        global $table_prefix;
+        
+        $availableIcons = Icon::$AVAILABLE_ICONS;
+
     }
 
     /**
