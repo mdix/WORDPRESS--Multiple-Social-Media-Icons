@@ -1,7 +1,8 @@
 <?php
 /**
  * Representation of a set of social media icons. Can either be build by giving an id 
- * or created from scratch by passing an array with icon names.
+ * (and thus retrives its information from the database) or created from scratch by 
+ * passing an array with icon names.
  *
  * @author marc
  */
@@ -15,7 +16,7 @@ class IconSet {
         } elseif (is_array($param)) {
             $this->icons = $this->createIcons($param, $iconSize);
         } else {
-            Throw new InvalidArgumentException('Either a id or a array with strings has to be given!');
+            Throw new InvalidArgumentException('Either a id or an array with strings has to be given!');
         }
     }
     
@@ -40,6 +41,3 @@ class IconSet {
         return $fullMarkup;
     }
 }
-
-?>
- 

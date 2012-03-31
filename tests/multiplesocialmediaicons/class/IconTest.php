@@ -65,5 +65,3 @@ class IconTest extends PHPUnit_Framework_TestCase {
                             '<a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="'.$customLink.'" title="'.$customTitle.'" target="_blank"></a></div>', $icon->getMarkup());
     }
 }
-
-?>
