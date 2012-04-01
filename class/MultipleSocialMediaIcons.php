@@ -31,7 +31,7 @@ class MultipleSocialMediaIcons {
         //add_action('init', array($this, 'init_scripts'), 20);
         //add_action('init', array($this, 'init_styles'), 20);
         //add_action('init', array($this, 'init_shortcodes'), 20);
-        //add_action('admin_menu', array($this,'init_admin_menu'));
+        add_action('admin_menu', array($this,'init_admin_menu'));
     }
 
     /**
@@ -74,11 +74,12 @@ class MultipleSocialMediaIcons {
          */
         $current_version = null;
         $current_version = get_option('myplugin-db-version');
-
+        
         // Check if the latest version is already installed
+        /*
         if($current_version == $db_version) {
             return;
-        }
+        }*/
 
         // In this example two tables is defined, 'table1' and 'table2'. This example tries
         // to illustrate how the tables gets upgraded. The layout of the tables is currently at
@@ -281,10 +282,6 @@ class MultipleSocialMediaIcons {
             'rewrite' => array('slug' => 'taxonomy')
         ));
     }
-
-    function getAllPossibleIcons() {
-        
-    }
     
     /**
      * Adds a new menu with the name "My Admin Menu" and let's anyone that
@@ -293,19 +290,26 @@ class MultipleSocialMediaIcons {
      */
     function init_admin_menu() {
         // Add the menu page
-        add_menu_page('Plugin Boilerplate Admin Menu', 'BP menu', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'main_menu_page'));
+        add_menu_page('Multiple Social Media Icons', 'Multiple SMIcons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'main_menu_page'));
 
         // Also let's add a submenu
-        add_submenu_page($this->plugin_name . '-admin-menu', 'Plugin Boilerplate Sub-Menu', 'BP submenu', 'publish_posts', $this->plugin_name . '-admin-submenu', array($this, 'sub_menu_page'));
+        add_submenu_page($this->plugin_name . '-admin-menu', 'Manage IconSets', 'Manage IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu', array($this, 'sub_menu_page'));
     }
 
     /**
      * This function will be executed when the admin page is to be loaded
      * @return void
      */
-    function main_menu_page() {
+    function main_menu_page($testing = null) {
         // Include the HTML from a separate file to keep the plugin class clean
-        require "pages/admin_main.php";
+        $filename = dirname(__FILE__) . "/../pages/admin_main.php";
+
+        if ($testing) {
+            ob_start();
+            include $filename;
+            return ob_get_clean();
+        }
+        return require $filename;
     }
 
     /**
@@ -314,6 +318,6 @@ class MultipleSocialMediaIcons {
      */
     function sub_menu_page() {
         // Include the HTML from a separate file to keep the plugin class clean
-        require "pages/admin_options_page.php";
+        require dirname(__FILE__) . "/../pages/admin_options_page.php";
     }
 }

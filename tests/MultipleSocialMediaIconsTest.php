@@ -38,14 +38,14 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
      * and thus static install() is called, the table for our plugin is created.
      * @covers MultipleSocialMediaIcons::install_db()
      */
-    public function testInstallDb() {
+    public function testInstallDbCreatesTableAndSchema() {
         global $wpdb;
         // check for the table, it shouldn't exist
-        $this->assertEquals(0, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])));
+        $this->assertEquals(0, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])), 'Table already exists!');
         // create table via install which calls install_db()
         MultipleSocialMediaIcons::install_db();
         // check for the table, it should exist
-        $this->assertEquals(1, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])));
+        $this->assertEquals(1, $wpdb->query(sprintf('SHOW TABLES LIKE "%s"', $this->tableNames['iconset'])), 'Table does not exist!');
     }
 
     /**
@@ -129,11 +129,8 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
      * @covers MultipleSocialMediaIcons::main_menu_page
      * @todo Implement testMain_menu_page().
      */
-    public function testMain_menu_page() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testMain_menu_page_returns_availableIcons() {
+        $this->assertInternalType('string', $this->msmi->main_menu_page($testing = true));
     }
 
     /**
