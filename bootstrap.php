@@ -6,9 +6,9 @@ Description: Include multiple sets of social media icons into posts / pages via 
 Version: 0.1
 Author: Marc Dix
 Author URI: http://www.dixpix.de
-License: A "Slug" license name e.g. GPL, GPL2, MIT
+License: GPL2
 
-    Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
+    Copyright 2012  Marc Dix  (email : marcdix@marcdix.de)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
