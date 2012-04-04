@@ -1,6 +1,7 @@
 <?php
 require_once 'Icon.php';
 require_once 'IconSet.php';
+require_once dirname(__FILE__) . '/../pages/AdminMain.php';
 /**
  * This is where you add comments for your plugin class
  * @author Your Name <your@name.tld>
@@ -290,7 +291,7 @@ class MultipleSocialMediaIcons {
      */
     function init_admin_menu() {
         // Add the menu page
-        add_menu_page('Multiple Social Media Icons', 'Multiple SMIcons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'main_menu_page'));
+        add_menu_page('Multiple Social Media Icons', 'Multiple SMIcons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'viewAdminMain'));
 
         // Also let's add a submenu
         add_submenu_page($this->plugin_name . '-admin-menu', 'Manage IconSets', 'Manage IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu', array($this, 'sub_menu_page'));
@@ -300,16 +301,8 @@ class MultipleSocialMediaIcons {
      * This function will be executed when the admin page is to be loaded
      * @return void
      */
-    function main_menu_page($testing = null) {
-        // Include the HTML from a separate file to keep the plugin class clean
-        $filename = dirname(__FILE__) . "/../pages/admin_main.php";
-
-        if ($testing) {
-            ob_start();
-            include $filename;
-            return ob_get_clean();
-        }
-        return require $filename;
+    function viewAdminMain() {
+        new AdminMain();
     }
 
     /**

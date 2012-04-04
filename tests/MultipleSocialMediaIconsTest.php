@@ -129,10 +129,23 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
      * @covers MultipleSocialMediaIcons::main_menu_page
      * @todo Implement testMain_menu_page().
      */
-    public function testMain_menu_page_returns_availableIcons() {
-        $this->assertInternalType('string', $this->msmi->main_menu_page($testing = true));
+    public function testAdminMainPageReturnsMarkup() {
+        ob_start();
+        $this->msmi->viewAdminMain();
+        $output = ob_get_clean();
+        
+        $this->assertInternalType('string', $output);
     }
+    
+    
 
+    public function testAdminMainPageShowsListOfAllPossibleIcons() {
+        ob_start();
+        $this->msmi->viewAdminMain();
+        $output = ob_get_clean();
+        
+        $this->markTestIncomplete('not fully implemented');
+    }
     /**
      * @covers MultipleSocialMediaIcons::sub_menu_page
      * @todo Implement testSub_menu_page().
@@ -142,17 +155,6 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
         );
-    }
-    
-    public function testGetAllPossibleIconsReturnsAllPossibleIcons() {
-        $availableIcons = Icon::$AVAILABLE_ICONS;
-        
-        $allPossibleIcons = $this->msmi->getAllPossibleIcons();
-        
-        foreach ($availableIcons as $key => $iconName) {
-            
-        }
-        
     }
 
 }
