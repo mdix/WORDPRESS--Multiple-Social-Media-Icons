@@ -1,4 +1,6 @@
 <?php
+require_once dirname(__FILE__) . '/../class/Icon.php';
+
 /**
  * Description of AdminMain
  *
@@ -19,31 +21,7 @@ class CreateIconSets {
                     <form method="post" action="options.php">
                     <table class="form-table">
                         <tbody>
-                        <tr valign="top">
-                        <th scope="row">
-                        <label for="blogname">Site Title</label>
-                        </th>
-                        <td>
-                        <input name="blogname" type="text" id="blogname" value="wordpress_extension_dev" class="regular-text">
-                        </td>
-                        </tr>
-                        <tr valign="top">
-                        <th scope="row">
-                        <label for="blogdescription">Tagline</label>
-                        </th>
-                        <td>
-                        <input name="blogdescription" type="text" id="blogdescription" value="Just another WordPress site" class="regular-text">
-                        <span class="description">In a few words, explain what this site is about.</span>
-                        </td>
-                        </tr>
-                        <tr valign="top">
-                        <th scope="row">
-                        <label for="siteurl">WordPress Address (URL)</label>
-                        </th>
-                        <td>
-                        <input name="siteurl" type="text" id="siteurl" value="http://localhost/wordpress_extension_dev" class="regular-text code">
-                        </td>
-                        </tr>
+                            '.$this->getMarkupForAllPossibleIcons().'
                         </tbody>
                     </table>
                     <p class="submit">
@@ -54,7 +32,18 @@ class CreateIconSets {
     }
     
     private function getMarkupForAllPossibleIcons() {
-        
+        $markup = '';
+        foreach (Icon::$AVAILABLE_ICONS as $iconName) {
+            $markup .=  '<tr valign="top">
+                        <th scope="row">
+                        <label for="blogname">' . $iconName . '</label>
+                        </th>
+                        <td>
+                        <input name="' . $iconName . '-link" type="text" class="regular-text">
+                        </td>
+                        </tr>';
+        }
+        return $markup;
     }
     
 }
