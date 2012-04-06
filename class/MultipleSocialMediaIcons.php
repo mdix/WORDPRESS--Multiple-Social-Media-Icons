@@ -2,6 +2,9 @@
 require_once 'Icon.php';
 require_once 'IconSet.php';
 require_once dirname(__FILE__) . '/../pages/AdminMain.php';
+require_once dirname(__FILE__) . '/../pages/CreateIconSets.php';
+require_once dirname(__FILE__) . '/../pages/EditIconSets.php';
+require_once dirname(__FILE__) . '/../pages/DeleteIconSets.php';
 /**
  * This is where you add comments for your plugin class
  * @author Your Name <your@name.tld>
@@ -92,7 +95,6 @@ class MultipleSocialMediaIcons {
         // Define tables
         $tables = array($table_prefix . 'msmi_iconset');
         $structure = array(
-
             // Definition for prefix.'msmi_iconset'
             "(`id` int(11) unsigned NOT NULL auto_increment,
             `field1` varchar(255) NOT NULL,
@@ -291,10 +293,12 @@ class MultipleSocialMediaIcons {
      */
     function init_admin_menu() {
         // Add the menu page
-        add_menu_page('Multiple Social Media Icons', 'Multiple SMIcons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'viewAdminMain'));
+        add_menu_page('Multiple Social Media Icons', 'Multiple Social Media Icons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'viewAdminMain'));
 
         // Also let's add a submenu
-        add_submenu_page($this->plugin_name . '-admin-menu', 'Manage IconSets', 'Manage IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu', array($this, 'sub_menu_page'));
+        add_submenu_page($this->plugin_name . '-admin-menu', 'Create IconSets', 'Create IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu-create', array($this, 'viewCreateIconSets'));
+        add_submenu_page($this->plugin_name . '-admin-menu', 'Edit IconSets',   'Edit IconSets',   'publish_posts', $this->plugin_name . '-admin-submenu-edit',   array($this, 'viewEditIconSets'));
+        add_submenu_page($this->plugin_name . '-admin-menu', 'Delete IconSets', 'Delete IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu-delete', array($this, 'viewDeleteIconSets'));
     }
 
     /**
@@ -309,8 +313,16 @@ class MultipleSocialMediaIcons {
      * This function will be executed when the admin sub page is to be loaded
      * @return void
      */
-    function sub_menu_page() {
+    function viewCreateIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        require dirname(__FILE__) . "/../pages/admin_options_page.php";
+        new CreateIconSets();
+    }
+    function viewEditIconSets() {
+        // Include the HTML from a separate file to keep the plugin class clean
+        new EditIconSets();
+    }
+    function viewDeleteIconSets() {
+        // Include the HTML from a separate file to keep the plugin class clean
+        new DeleteIconSets();
     }
 }

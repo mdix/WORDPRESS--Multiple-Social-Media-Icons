@@ -125,10 +125,6 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         );
     }
 
-    /**
-     * @covers MultipleSocialMediaIcons::main_menu_page
-     * @todo Implement testMain_menu_page().
-     */
     public function testAdminMainPageReturnsMarkup() {
         ob_start();
         $this->msmi->viewAdminMain();
@@ -137,7 +133,29 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         $this->assertInternalType('string', $output);
     }
     
+    public function testCreateIconSetsReturnsMarkup() {
+        ob_start();
+        $this->msmi->viewCreateIconSets();
+        $output = ob_get_clean();
+        
+        $this->assertInternalType('string', $output);
+    }
     
+    public function testEditIconSetsReturnsMarkup() {
+        ob_start();
+        $this->msmi->viewEditIconSets();
+        $output = ob_get_clean();
+        
+        $this->assertInternalType('string', $output);
+    }
+    
+    public function testDeleteIconSetsReturnsMarkup() {
+        ob_start();
+        $this->msmi->viewDeleteIconSets();
+        $output = ob_get_clean();
+        
+        $this->assertInternalType('string', $output);
+    }
 
     public function testAdminMainPageShowsListOfAllPossibleIcons() {
         ob_start();

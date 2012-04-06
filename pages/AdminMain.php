@@ -13,7 +13,7 @@
 class AdminMain {
     //put your code here
     public function __construct() {
-        echo 'test';
+        echo '<h1>Welcome to Multiple Social Media Icons!</h1>';
     }
 }
 

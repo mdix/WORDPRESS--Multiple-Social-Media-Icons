@@ -33,6 +33,4 @@ require_once dirname(__FILE__) . '/class/MultipleSocialMediaIcons.php';
  * Register the plugin
  */
 add_action("init", create_function('', 'new MultipleSocialMediaIcons();'));
-
-// Uncomment this if you need an install routine, remember to change the class name.
 register_activation_hook(__FILE__, array('MultipleSocialMediaIcons', 'install'));
