@@ -18,9 +18,20 @@ class CreateIconSetsTest extends PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new CreateIconSets;
+        global $table_prefix;
+        $this->prefix = $table_prefix;
+        $this->tableNames = array('iconset' => $this->prefix . 'msmi_iconset');
+
+        // has to be global because wordpress calls a static function and utilizes $wpdb
+        $GLOBALS['wpdb']         = new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+        $GLOBALS['table_prefix'] = $table_prefix;
+        $this->msmi              = new MultipleSocialMediaIcons();
     }
 
+    public function testValidateInput() {
+        
+    }
+    
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.

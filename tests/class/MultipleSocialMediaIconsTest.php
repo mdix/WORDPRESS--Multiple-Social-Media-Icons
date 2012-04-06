@@ -17,7 +17,7 @@ class MultipleSocialMediaIconsTest extends PHPUnit_Framework_TestCase {
         global $table_prefix;
         $this->prefix = $table_prefix;
         $this->tableNames = array('iconset' => $this->prefix . 'msmi_iconset');
-        
+
         // has to be global because wordpress calls a static function and utilizes $wpdb
         $GLOBALS['wpdb']         = new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
         $GLOBALS['table_prefix'] = $table_prefix;
