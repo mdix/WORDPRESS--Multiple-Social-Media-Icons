@@ -315,14 +315,14 @@ class MultipleSocialMediaIcons {
      */
     function viewCreateIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new CreateIconSets();
+        new CreateIconSets($_POST);
     }
     function viewEditIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new EditIconSets();
+        new EditIconSets($_POST);
     }
     function viewDeleteIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new DeleteIconSets();
+        new DeleteIconSets($_POST);
     }
 }

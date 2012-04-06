@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../class/Icon.php';
+require_once dirname(__FILE__) . '/../../class/Icon.php';
 
 /**
  * Test class for Icon.

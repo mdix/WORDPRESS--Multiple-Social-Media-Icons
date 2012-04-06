@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../pages/AdminMain.php';
+require_once dirname(__FILE__) . '/../../pages/AdminMain.php';
 
 /**
  * Test class for AdminMain.
