@@ -10,8 +10,12 @@ class CreateIconSets {
         if (!empty($insecurePOST)) {
             echo 'post!';
         }
+        $this->echoMarkup();
+    }
+    
+    public function echoMarkup() {
         echo '  <div class="wrap">
-                <h2>Create Icon Sets</h2>
+                    <h2>Create Icon Sets</h2>
                     <form method="post" action="options.php">
                     <table class="form-table">
                         <tbody>
@@ -47,6 +51,10 @@ class CreateIconSets {
                     </p>
                     </form>
                 </div>';
+    }
+    
+    private function getMarkupForAllPossibleIcons() {
+        
     }
     
 }
