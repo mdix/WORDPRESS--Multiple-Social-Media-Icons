@@ -41,7 +41,7 @@ class IconTest extends PHPUnit_Framework_TestCase {
     public function testGetMarkup() {
         $iconSize = 32;
         $icon = new Icon('twitter', $iconSize);
-        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
+        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:url(../wp-content/plugins/multiplesocialmediaicons/icons/socialMediaBookmarkIconsSpriteCompressed.png);background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
                             '<a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="#" title="Follow me on twitter" target="_blank"></a></div>', $icon->getMarkup());
     }
     
@@ -53,7 +53,7 @@ class IconTest extends PHPUnit_Framework_TestCase {
         $icon = new Icon('stumbleupon', $iconSize);
         $icon->setCustomIconLink($customLink);
         $icon->setCustomIconTitle($customTitle);
-        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:###SPRITE###;background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
+        $this->assertEquals('<div style="width:'.$iconSize.'px;height:'.$iconSize.'px;background-image:url(../wp-content/plugins/multiplesocialmediaicons/icons/socialMediaBookmarkIconsSpriteCompressed.png);background-position:'.$icon->getNegatedLeftOffset().'px 0;">'.
                             '<a style="display:block;width:'.$iconSize.'px;height:'.$iconSize.'px;" href="'.$customLink.'" title="'.$customTitle.'" target="_blank"></a></div>', $icon->getMarkup());
     }
 }

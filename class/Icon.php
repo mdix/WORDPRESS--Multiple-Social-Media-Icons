@@ -74,7 +74,7 @@ class Icon {
      */
     public function getMarkup($backend = null) {
         if (!$backend) {
-            $template = '<div style="width:%1$spx;height:%1$spx;background-image:###SPRITE###;background-position:%4$spx 0;">'.
+            $template = '<div style="width:%1$spx;height:%1$spx;background-image:url(../wp-content/plugins/multiplesocialmediaicons/icons/socialMediaBookmarkIconsSpriteCompressed.png);background-position:%4$spx 0;">'.
                         '<a style="display:block;width:%1$spx;height:%1$spx;" href="%2$s" title="%3$s" target="_blank"></a></div>';
             return sprintf($template, $this->iconSize, $this->iconLink, $this->iconTitle, $this->getNegatedLeftOffset());
         } else {
