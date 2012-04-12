@@ -293,7 +293,7 @@ class MultipleSocialMediaIcons {
      */
     function init_admin_menu() {
         // Add the menu page
-        add_menu_page('Multiple Social Media Icons', 'Multiple Social Media Icons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'viewAdminMain'));
+        add_menu_page('Multiple Social Media Icons', 'Multiple SMIcons', 'publish_posts', $this->plugin_name . '-admin-menu', array($this,'viewAdminMain'));
 
         // Also let's add a submenu
         add_submenu_page($this->plugin_name . '-admin-menu', 'Create IconSets', 'Create IconSets', 'publish_posts', $this->plugin_name . '-admin-submenu-create', array($this, 'viewCreateIconSets'));
