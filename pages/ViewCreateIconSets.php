@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../class/Icon.php';
  *
  * @author marc
  */
-class CreateIconSets {
+class ViewCreateIconSets {
     //put your code here
     public function __construct($insecurePOST) {
         if (!empty($insecurePOST)) {

@@ -2,9 +2,9 @@
 require_once 'Icon.php';
 require_once 'IconSet.php';
 require_once dirname(__FILE__) . '/../pages/AdminMain.php';
-require_once dirname(__FILE__) . '/../pages/CreateIconSets.php';
-require_once dirname(__FILE__) . '/../pages/EditIconSets.php';
-require_once dirname(__FILE__) . '/../pages/DeleteIconSets.php';
+require_once dirname(__FILE__) . '/../pages/ViewCreateIconSets.php';
+require_once dirname(__FILE__) . '/../pages/ViewEditIconSets.php';
+require_once dirname(__FILE__) . '/../pages/ViewDeleteIconSets.php';
 /**
  * This is where you add comments for your plugin class
  * @author Your Name <your@name.tld>
@@ -315,14 +315,14 @@ class MultipleSocialMediaIcons {
      */
     function viewCreateIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new CreateIconSets($_POST);
+        new ViewCreateIconSets($_POST);
     }
     function viewEditIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new EditIconSets($_POST);
+        new ViewEditIconSets($_POST);
     }
     function viewDeleteIconSets() {
         // Include the HTML from a separate file to keep the plugin class clean
-        new DeleteIconSets($_POST);
+        new ViewDeleteIconSets($_POST);
     }
 }
